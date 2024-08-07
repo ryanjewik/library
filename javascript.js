@@ -1,20 +1,18 @@
 const myLibrary = [];
 
+/*
 class Book {
-    constructor() {
-        this.title = "";
-        this.author = "";
-        this.synopsis = "No synopsis available";
-        this.read = false;
-        this.ISBN = null;
-    }
+    
 }
-function Book(title, author, synopsis, ISBN){
+    */
+class Book{
+    constructor(title, author, synopsis, ISBN){
     this.title = title;
     this.author = author;
     this.synopsis = synopsis;
     this.ISBN = ISBN;
     this.read = false;
+    }
 }
 
 function addBookToLibrary(){
@@ -22,7 +20,7 @@ function addBookToLibrary(){
     author = String(prompt("Who is the book author?"));
     bool = "";
     while((bool !== 'y') || (bool !== 'n')){
-        synopsisBool = String(prompt("Do you have a book synopsis?(y/n)"));
+        bool = String(prompt("Do you have a book synopsis?(y/n)"));
         if (bool === 'y'){
             synopsis = String(prompt("What is the synopsis?"));
             break;
@@ -31,7 +29,7 @@ function addBookToLibrary(){
             synopsis = "No synopsis available";
             break;
         }else{
-            console.log("invalid input, please try again. ")
+            alert("invalid input, please try again");
         }
     }
     bool = "";
@@ -45,8 +43,32 @@ function addBookToLibrary(){
             ISBN = "No ISBN available";
             break;
         }else{
-            console.log("invalid input, please try again. ")
+            alert("invalid input, please try again");
         }
     }
-    Book(title, author, synopsis, ISBN);
+    var book = new Book(title, author, synopsis, ISBN);
+    myLibrary.push(book);
+
+    let message = title + " by " + author + " has been added!" + '\n'
+     + "Synopsis: " + synopsis + '\n' + "ISBN: " + ISBN;
+    alert(message);
+
+    console.log(title + " by " + author + " has been added!");
+    console.log("Summary: " + synopsis);
+    console.log("ISBN: " + ISBN);
+    bool = "";
+    while((bool !== 'y') || (bool !== 'n')){
+        bool = String(prompt("Do you want to add another book? (y/n)"));
+        if (bool === 'y'){
+            addBookToLibrary();
+            break;
+        }
+        else if (bool ==='n'){
+            break;
+        }else{
+            alert("invalid input, please try again");
+        }
+    }
 }
+console.log("test");
+addBookToLibrary();
