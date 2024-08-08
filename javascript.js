@@ -56,12 +56,8 @@ function addBookToLibrary(){
             alert("invalid input, please try again");
         }
     }
-    
-    while(ISBN.length != 13){//checks if book exists already
-        ISBN = Number(prompt("What is the ISBN? (must be 13 digits)"));
-    }
-    let exists = findBook(ISBN);
-    if (exists === null){
+    ISBN = Number(prompt("What is the ISBN? (must be 13 digits)"));
+    if (findBook(ISBN) === -1){
         alert("book already exists! cancelling addition.");
         return null;
     }else{
@@ -88,48 +84,81 @@ function addBookToLibrary(){
     }
 }
 
+//selects which book to manipulate
+function bookSelector(num){
+    return bookDisplay[num - 1].ISBN;
+}
+
 //removes book from library
 function removeBookFromLibrary(ISBNinput){
     let index = findBook(ISBNinput);
     myLibrary.splice(index, 1);
-    librarySize--;
+    displayBooks(0);
 }
 
+//finds book in library based on ISBN
 function findBook(ISBNinput){
-    for (let i = 0; i < librarySize; i++){
+    for (let i = 0; i < myLibrary.length; i++){
         if (myLibrary[i].ISBN ===ISBNinput){
             return i;
         }
     }
-    return null;
+    return -1;
 }
 
+//changes status of book between read and unread
+function readStatus(ISBNinput){
+    let index = findBook(ISBNinput);
+    if (myLibrary[index].read === false){
+        myLibrary[index].read = true;
+    }else{
+        myLibrary[index].read = false;
+    }
+    for (let i = 0; i < 4; i++){
+        if (bookDisplay[i].ISBN === ISBNinput){
+            if (myLibrary[index].read === true){
+                document.getElementById("b" + (i + 1) + "-read").style.backgroundColor = 'rgb(33, 111, 38)';
+                document.getElementById("b" + (i + 1) + "-read").style.color = 'white';
+                break;
+            }else{
+                document.getElementById("b" + (i + 1) + "-read").style.backgroundColor = 'white';
+                document.getElementById("b" + (i + 1) + "-read").style.color = 'black';
+                break;
+            }
+            
+
+        }
+    }
+    
+}
+
+//selects which books to display to the user
 function displayBooks(idx){//chooses four books to display to the user
-    console.log("books being changed")
     currIdx += idx;
+    console.log("beginning current index: " + currIdx);
     if (currIdx < 0){
         currIdx = myLibrary.length - Math.abs(currIdx);
     }else if (currIdx >= myLibrary.length){
         currIdx = 0 + (currIdx - myLibrary.length);
     }
+    console.log("post conversion current index: " + currIdx);
 
     for (let i = 0; i < 4; i++){
         if (bookDisplay.length > 0){
             bookDisplay.pop();
-            console.log("book removed!");
         }
     }
     if (myLibrary.length >= 4){
         let libraryParse = 0;
+        let resetIdx = currIdx;
         for (let i = 0; i < 4; i++){
-            if (currIdx + libraryParse >= myLibrary.length){
-                currIdx = 0;
-                libraryParse = 0;
+            if ((resetIdx + libraryParse) >= (myLibrary.length)){
+                resetIdx = 0;
+                bookDisplay.push(myLibrary[0]);
+            }else{
+                bookDisplay.push(myLibrary[resetIdx + libraryParse]);
+                libraryParse+=1;
             }
-            bookDisplay.push(myLibrary[currIdx + libraryParse]);
-            libraryParse +=1;
-            console.log(myLibrary[currIdx + i].title)
-            console.log("book added to display!")
         }
     }
     for (let card = 1; card <= bookDisplay.length; card++){
@@ -137,9 +166,15 @@ function displayBooks(idx){//chooses four books to display to the user
         document.getElementById("b"+ card +"-title").innerHTML = bookDisplay[num].title;
         document.getElementById("b"+card+"-author").innerHTML = bookDisplay[num].author;
         document.getElementById("b"+card+"-synopsis").innerHTML = bookDisplay[num].synopsis;
+        if (bookDisplay[num].read === true){
+            document.getElementById("b" + (card) + "-read").style.backgroundColor = 'rgb(33, 111, 38)';
+            document.getElementById("b" + (card) + "-read").style.color = 'white';
+        }else{
+            document.getElementById("b" + (card) + "-read").style.backgroundColor = 'white';
+            document.getElementById("b" + (card) + "-read").style.color = 'black';
+        }
     }
-    console.log(currIdx);
-    console.log(bookDisplay.length);
+    console.log("ending current index: " + currIdx);
     
 }
 
