@@ -1,5 +1,7 @@
 const myLibrary = [];
 var librarySize = 0;
+const bookDisplay = [];
+currIdx = 0;
 
 //Book class
 class Book{
@@ -22,6 +24,18 @@ function populateLibrary(){
     myLibrary.push(book);
     var book = new Book("lord of the flies", "famous author", "kid stranded on an island and they get barbaric", 7897890789);
     myLibrary.push(book);
+    var book = new Book("book a", "me myself and I", "kyou ha gimu wo yasumimashita", 1236781234561);
+    myLibrary.push(book);
+    var book = new Book("book b", "nobody", "this is a javascript project that's taking too long", 7983218764324);
+    myLibrary.push(book);
+    var book = new Book("book c", "random", "hajimemashite hideo to moushimasu", 1234564561231);
+    myLibrary.push(book);
+    var book = new Book("book d", "on the come up", "test test test", 7899879873211);
+    myLibrary.push(book);
+    var book = new Book("book e", "kanye west", "uhhh what?", 7650984321231);
+    myLibrary.push(book);
+    console.log("library populated!");
+    librarySize = 9;
 }
 
 //adds book to library
@@ -91,25 +105,37 @@ function findBook(ISBNinput){
 }
 
 function displayBooks(idx){//chooses four books to display to the user
-    for (let i = 0; i < display.length; i++){
-        display.pop()
+    console.log("books being changed")
+    currIdx += idx;
+    for (let i = 0; i < bookDisplay.length; i++){
+        bookDisplay.pop()
     }
     if (librarySize >= 4){
         booksAdded = 0;
         while(booksAdded < 4){
-            display.push(myLibrary[idx]);
-            idx++;
-            if (idx >= librarySize){
-                idx = 0;
+            bookDisplay.push(myLibrary[currIdx]);
+            currIdx++;
+            if (currIdx >= librarySize){
+                currIdx = 0;
             }
             booksAdded++;
+            console.log("book added to display!")
         }
     }
+    for (let i = 1; i <= bookDisplay.length; i++){
+        let num = i -1;
+        document.getElementById("b"+ i +"-title").innerHTML = bookDisplay[num].title;
+        document.getElementById("b"+i+"-author").innerHTML = bookDisplay[num].author;
+        document.getElementById("b"+i+"-synopsis").innerHTML = bookDisplay[num].synopsis;
+    }
+    console.log("book display complete!")
     
 }
 
+
+
 populateLibrary();
-const display = [];
+displayBooks(0);
 
 
 //addBookToLibrary();

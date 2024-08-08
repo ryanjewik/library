@@ -13,34 +13,33 @@
     
 </head>
 <body>
-    <script src="javascript.js"></script>
+    
     <div id = "background">
-        <!--<img src = "images/library.jpg">-->
         <div id ="library">
             <div class = "book">
                 <div class = "card-head">
                     <button class = "read-btn">r</button>
                     <div class ="title-author">
-                        <h5>title</h5>
-                        <h6>author</h6>
+                        <h5 id = "b1-title">title</h5>
+                        <h6 id = "b1-author">author</h6>
                     </div>
                     <button class = "remove-btn">x</button>
                 </div>
                 <div class = "card-body">
-                    <p>lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
+                    <p id = "b1-synopsis">lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
                 </div>
             </div>
             <div class = "book">
                 <div class = "card-head">
                     <button class = "read-btn">r</button>
                     <div class ="title-author">
-                        <h5>title</h5>
-                        <h6>author</h6>
+                        <h5 id = "b2-title">title</h5>
+                        <h6 id = "b2-author">author</h6>
                     </div>
                     <button class = "remove-btn">x</button>
                 </div>
                 <div class = "card-body">
-                    <p>lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
+                    <p id = "b2-synopsis">lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
                 </div>
             </div>
             
@@ -48,34 +47,35 @@
                 <div class = "card-head">
                     <button class = "read-btn">r</button>
                     <div class ="title-author">
-                        <h5>title</h5>
-                        <h6>author</h6>
+                        <h5 id = "b3-title">title</h5>
+                        <h6 id = "b3-author">author</h6>
                     </div>
                     <button class = "remove-btn">x</button>
                 </div>
                 <div class = "card-body">
-                    <p>lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
+                    <p id = "b3-synopsis">lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
                 </div>
             </div>
             <div class = "book">
                 <div class = "card-head">
                     <button class = "read-btn">r</button>
                     <div class ="title-author">
-                        <h5>title</h5>
-                        <h6>author</h6>
+                        <h5 id = "b4-title">title</h5>
+                        <h6 id = "b4-author">author</h6>
                     </div>
                     <button class = "remove-btn">x</button>
                 </div>
                 <div class = "card-body">
-                    <p>lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
+                    <p id = "b4-synopsis">lorem ipsum akljsd;lkajsd;lkj;aslkdjfa</p>
                 </div>
             </div>
         </div>
         <div id = "ui">
-            <button class = "nav-btns" id = "left">&#8249</button>
-            <button id = "add-book-btn">add book</button>
-            <button class = "nav-btns" id = "right">&#8250</button>
+            <button class = "nav-btns" id = "left" onclick = "displayBooks(-4)">&#8249</button>
+            <button id = "add-book-btn" onclick = "addBookToLibrary()">add book</button>
+            <button class = "nav-btns" id = "right" onclick = "displayBooks(4)">&#8250</button>
         </div>
     </div>
+    <script src="javascript.js"></script>
 </body>
 </html>

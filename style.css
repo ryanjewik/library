@@ -1,16 +1,16 @@
-#background img{
-    height: 500px;
-    width: auto;
-}
+
 #background{
     background-color: bisque;
     display: grid;
-    grid-template-rows: 6fr 2fr;
+    grid-template-rows: 12fr 1fr 2fr 4fr;
+    background-image: url("images/library.jpg");
+    background-size: cover;
 }
 
 /*----------library----------*/
 #library{
-    background-color: rgb(189, 141, 102);
+    /*background-color: rgb(189, 141, 102);*/
+    grid-row: 1;
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     margin: 10px;
@@ -24,39 +24,55 @@
     border-width: 2px;
     padding: 10px;
     display: grid;
-    grid-template-rows: 2fr 4fr;
+    grid-template-rows: 3fr 7fr;
 }
 
 /*----------card head----------*/
 .card-head{
     grid-row: 1;
+    align-items: center;
+    justify-content: center;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
 .title-author{
     grid-column: 2;
     text-align: center;
+    
 }
 .title-author h6{
     opacity: .7;
+    margin: 0px;
+}
+.title-author h5{
+    padding: 0px;
+    margin: 0px;
 }
 .read-btn, .remove-btn{
-    height: 40%;
-    width: auto;
-    opacity: .8;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: rgb(77, 136, 204);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+
 }
 /*----------ui----------*/
 #ui{
-    grid-row: 2;
+    grid-row: 3;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .nav-btns{
     height: 50%;
-    margin: auto 10%;
+    width: 100px;
+    margin: auto 5%;
     padding: 20px;
-    opacity: .8;
     display: flex;
     justify-content: center;
     align-items: center;
