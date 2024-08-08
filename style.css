@@ -1,0 +1,78 @@
+#background img{
+    height: 500px;
+    width: auto;
+}
+#background{
+    background-color: bisque;
+    display: grid;
+    grid-template-rows: 6fr 2fr;
+}
+
+/*----------library----------*/
+#library{
+    background-color: rgb(189, 141, 102);
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr;
+    margin: 10px;
+    gap: 10px;
+    padding: 10px;
+}
+.book{
+    background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: 2fr 4fr;
+}
+
+/*----------card head----------*/
+.card-head{
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.title-author{
+    grid-column: 2;
+    text-align: center;
+}
+.title-author h6{
+    opacity: .7;
+}
+.read-btn, .remove-btn{
+    height: 40%;
+    width: auto;
+    opacity: .8;
+}
+/*----------ui----------*/
+#ui{
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-btns{
+    height: 50%;
+    margin: auto 10%;
+    padding: 20px;
+    opacity: .8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+#add-book-btn{
+    padding: 20px;
+    background-color: rgb(77, 136, 204);
+    border-style: solid;
+    border-color: white;
+    color: white;
+    border-radius: 10px;
+}
+#right{
+    border-radius: 10px 500px 500px 10px;
+}
+#left{
+    border-radius: 500px 10px 10px 500px;
+}
