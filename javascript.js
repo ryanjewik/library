@@ -107,28 +107,39 @@ function findBook(ISBNinput){
 function displayBooks(idx){//chooses four books to display to the user
     console.log("books being changed")
     currIdx += idx;
-    for (let i = 0; i < bookDisplay.length; i++){
-        bookDisplay.pop()
+    if (currIdx < 0){
+        currIdx = myLibrary.length - Math.abs(currIdx);
+    }else if (currIdx >= myLibrary.length){
+        currIdx = 0 + (currIdx - myLibrary.length);
     }
-    if (librarySize >= 4){
-        booksAdded = 0;
-        while(booksAdded < 4){
-            bookDisplay.push(myLibrary[currIdx]);
-            currIdx++;
-            if (currIdx >= librarySize){
+
+    for (let i = 0; i < 4; i++){
+        if (bookDisplay.length > 0){
+            bookDisplay.pop();
+            console.log("book removed!");
+        }
+    }
+    if (myLibrary.length >= 4){
+        let libraryParse = 0;
+        for (let i = 0; i < 4; i++){
+            if (currIdx + libraryParse >= myLibrary.length){
                 currIdx = 0;
+                libraryParse = 0;
             }
-            booksAdded++;
+            bookDisplay.push(myLibrary[currIdx + libraryParse]);
+            libraryParse +=1;
+            console.log(myLibrary[currIdx + i].title)
             console.log("book added to display!")
         }
     }
-    for (let i = 1; i <= bookDisplay.length; i++){
-        let num = i -1;
-        document.getElementById("b"+ i +"-title").innerHTML = bookDisplay[num].title;
-        document.getElementById("b"+i+"-author").innerHTML = bookDisplay[num].author;
-        document.getElementById("b"+i+"-synopsis").innerHTML = bookDisplay[num].synopsis;
+    for (let card = 1; card <= bookDisplay.length; card++){
+        let num = card -1;
+        document.getElementById("b"+ card +"-title").innerHTML = bookDisplay[num].title;
+        document.getElementById("b"+card+"-author").innerHTML = bookDisplay[num].author;
+        document.getElementById("b"+card+"-synopsis").innerHTML = bookDisplay[num].synopsis;
     }
-    console.log("book display complete!")
+    console.log(currIdx);
+    console.log(bookDisplay.length);
     
 }
 
